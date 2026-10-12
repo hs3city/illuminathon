@@ -1,0 +1,24 @@
+# Illuminathon 2026 — Światło na Gdynię
+User-agent: *
+Allow: /
+
+# Crawlery AI (GEO) — jawnie dozwolone
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://illuminathon.hs3.pl/sitemap.xml
