@@ -23,7 +23,7 @@ potem otwórz http://localhost:8765
 - [ ] domknąć sprawę logotypów (patrz niżej)
 
 ## Logotypy partnerów
-Na razie widoczne są **tylko Gmina Miasta Gdyni (na górze) i PPNT (pod nią)**. Pozostałe logotypy (UMG, organizatorzy, społeczności gamedev) są **ukryte w kodzie przez atrybut `hidden`** — nic nie zostało usunięte, wracają po zdjęciu `hidden`, gdy partnerzy zatwierdzą swoje znaki.
+Widoczne: **Organizatorzy** (CODE:ME, Hackerspace Trójmiasto) oraz **Partnerzy strategiczni** (Gdynia — logo 100-lecia miasta, PPNT, Uniwersytet Morski). Logotypy społeczności gamedev są **ukryte w kodzie przez atrybut `hidden`** — nic nie usunięto, wracają po zdjęciu `hidden`, gdy społeczności zatwierdzą swoje znaki.
 
 ## Prywatność
 Strona nie ustawia ciasteczek, zero trackerów, zero zasobów z obcych domen (fonty i skrypty lokalne). Mapa Gdyni: dane OpenStreetMap (ODbL), atrybucja w stopce.

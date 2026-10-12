@@ -348,7 +348,7 @@ main,header,footer{position:relative;z-index:2}
 .loga a{display:flex;align-items:center;opacity:.9;transition:opacity .15s,filter .15s}
 .loga a:hover{opacity:1;filter:drop-shadow(0 0 14px rgba(204,255,0,.3))}
 .loga img{width:auto}
-.l-gdynia{height:54px}.l-ppnt{height:80px}.l-umg{height:100px}.l-codeme{height:28px}.l-hs3{height:60px}
+.l-gdynia{height:54px}.l-gdynia100{height:72px}.l-ppnt{height:80px}.l-umg{height:100px}.l-codeme{height:28px}.l-hs3{height:60px}
 .loga.pion{flex-direction:column;gap:clamp(20px,3vw,34px)}/* Gdynia nad PPNT (instrukcja zespołu 12.10.2026) */
 [hidden]{display:none!important}/* pewne ukrycie logotypów wstrzymanych do zatwierdzenia */
 /* społeczności: biel na granacie, kolor po najechaniu */
@@ -360,7 +360,7 @@ main,header,footer{position:relative;z-index:2}
 /* logotypy z nieprzezroczystym tłem: odwrócone + screen, więc tło znika, a znak jest jasny */
 .loga.spolecznosc img.op,.loga.spolecznosc li:hover img.op{filter:invert(1) grayscale(1);mix-blend-mode:screen;opacity:.85}
 .partnerzy .nota{margin-top:36px;font-size:14px;color:var(--szary);max-width:60ch}
-@media (max-width:640px){.l-gdynia{height:38px}.l-ppnt{height:58px}.l-umg{height:72px}.l-codeme{height:20px}.l-hs3{height:44px}
+@media (max-width:640px){.l-gdynia{height:38px}.l-gdynia100{height:52px}.l-ppnt{height:58px}.l-umg{height:72px}.l-codeme{height:20px}.l-hs3{height:44px}
   .loga.spolecznosc li{height:44px;max-width:110px}.loga.spolecznosc img{max-height:44px;max-width:110px}}
 
 /* ───────── finał + stopka ───────── */
@@ -377,9 +377,9 @@ footer .lbl{line-height:2}
 footer ul{display:flex;flex-wrap:wrap;gap:8px 22px}
 footer ul a{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--biel-2);text-decoration:none;border-bottom:1px solid transparent}
 footer ul a:hover{color:var(--limonka);border-color:var(--limonka)}
-footer .sygn{width:100%;text-align:right;margin-top:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--szary);opacity:.45}
-footer .sygn a{text-decoration:none;border-bottom:1px solid transparent}
-footer .sygn a:hover{border-color:currentColor}
+footer .sygn{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--szary);white-space:nowrap}
+footer .sygn a{color:var(--biel-2);text-decoration:none;border-bottom:1px solid rgba(238,235,247,.22);padding-bottom:1px}
+footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
 
 /* wejście strony — jedno zestrojone pojawienie */
 .hero-tekst>*{opacity:0;transform:translateY(14px);animation:wejscie .9s cubic-bezier(.2,.7,.2,1) forwards}
@@ -647,21 +647,21 @@ footer .sygn a:hover{border-color:currentColor}
     <div class="sek-head">
       <h2 id="h-partnerzy">Organizatorzy i <span class="akc">partnerzy</span></h2>
     </div>
-    <!-- 12.10.2026 instrukcja zespołu: na razie pokazać tylko miasto Gdynia (na górze) + PPNT (pod spodem).
-         Reszta logotypów (UMG, organizatorzy, społeczności) UKRYTA przez hidden, NIE skasowana — wraca po zatwierdzeniu przez partnerów. -->
-    <div class="grupa">
-      <span class="lbl" hidden>Partnerzy strategiczni</span>
-      <ul class="loga pion">
-        <li><a target="_blank" href="https://www.gdynia.pl" rel="noopener" aria-label="Gmina Miasta Gdyni"><img class="l-gdynia" src="assets/logo/gdynia-bialy.png" alt="Gdynia — moje miasto" width="400" height="127" loading="lazy"></a></li>
-        <li><a target="_blank" href="https://ppnt.pl" rel="noopener" aria-label="Pomorski Park Naukowo-Technologiczny Gdynia"><img class="l-ppnt" src="assets/logo/ppnt-bialy.svg" alt="Pomorski Park Naukowo-Technologiczny Gdynia" width="176" height="116" loading="lazy"></a></li>
-        <li hidden><a target="_blank" href="https://umg.edu.pl" rel="noopener" aria-label="Uniwersytet Morski w Gdyni"><img class="l-umg" src="assets/logo/umg.svg" alt="Uniwersytet Morski w Gdyni" width="277" height="329" loading="lazy"></a></li>
-      </ul>
-    </div>
-    <div class="grupa" hidden><!-- organizatorzy (CODE:ME, HS3) — ukryte do zatwierdzenia, 12.10.2026 -->
+    <!-- 13.10.2026 instrukcja zespołu (przez Olimpię): Organizatorzy pierwsi (CODE:ME, HS3),
+         potem Partnerzy strategiczni (Gdynia 100-lecie, PPNT, UMG). Niższe loga społeczności — ukryte do zatwierdzenia, NIE skasowane. -->
+    <div class="grupa"><!-- organizatorzy — pierwsi -->
       <span class="lbl">Organizatorzy</span>
       <ul class="loga">
         <li><a target="_blank" href="https://codeme.pl" rel="noopener" aria-label="Fundacja CODE:ME"><img class="l-codeme" src="assets/logo/codeme-bialy.svg" alt="Fundacja CODE:ME" width="142" height="21" loading="lazy"></a></li>
         <li><a target="_blank" href="https://hs3.pl" rel="noopener" aria-label="Hackerspace Trójmiasto"><img class="l-hs3" src="assets/logo/hs3-600-bialy.png" alt="Hackerspace Trójmiasto" width="600" height="307" loading="lazy"></a></li>
+      </ul>
+    </div>
+    <div class="grupa"><!-- partnerzy strategiczni — drudzy -->
+      <span class="lbl">Partnerzy strategiczni</span>
+      <ul class="loga">
+        <li><a target="_blank" href="https://www.gdynia.pl" rel="noopener" aria-label="Gdynia — 100-lecie miasta"><img class="l-gdynia100" src="assets/logo/gdynia-100-bialy.png" alt="Gdynia — 100-lecie miasta (1926–2026)" width="370" height="185" loading="lazy"></a></li>
+        <li><a target="_blank" href="https://ppnt.pl" rel="noopener" aria-label="Pomorski Park Naukowo-Technologiczny Gdynia"><img class="l-ppnt" src="assets/logo/ppnt-bialy.svg" alt="Pomorski Park Naukowo-Technologiczny Gdynia" width="176" height="116" loading="lazy"></a></li>
+        <li><a target="_blank" href="https://umg.edu.pl" rel="noopener" aria-label="Uniwersytet Morski w Gdyni"><img class="l-umg" src="assets/logo/umg.svg" alt="Uniwersytet Morski w Gdyni" width="277" height="329" loading="lazy"></a></li>
       </ul>
     </div>
     <div class="grupa" hidden><!-- społeczności gamedev — ukryte do zatwierdzenia, 12.10.2026 -->
@@ -717,6 +717,7 @@ footer .sygn a:hover{border-color:currentColor}
       <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
       <li><a target="_blank" href="https://www.openstreetmap.org/copyright" rel="noopener">Mapa © OpenStreetMap</a></li>
     </ul>
+    <p class="sygn">Realizacja: <a href="https://paradizart.pl/" target="_blank" rel="noopener">Paradiz Art</a></p>
   </div>
 </footer>
 
