@@ -85,12 +85,13 @@ main,header,footer{position:relative;z-index:2}
 .lead{margin-top:clamp(20px,3.2vh,34px);max-width:52ch;font-size:clamp(16.5px,1.35vw,19px);line-height:1.6;color:var(--biel-2);font-weight:300}
 .lead b{color:var(--biel);font-weight:600}
 .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(26px,4vh,40px)}
-.hero-meta{margin-top:clamp(34px,5vh,56px);display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto auto;column-gap:clamp(32px,4vw,56px);row-gap:8px;align-items:start;width:max-content;max-width:100%}
+.hero-meta{margin-top:clamp(34px,5vh,56px);display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto auto;column-gap:clamp(32px,7vw,110px);row-gap:8px;align-items:start;width:max-content;max-width:100%}
 .hero-meta>div{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:6px;justify-items:start}
 .hero-meta dd{margin:0}
 .hero-meta .lbl{margin:0}
 .hero-meta .v{justify-self:start;width:max-content;font-weight:700;font-size:clamp(24px,2.2vw,31px);line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
-.hero-meta .m{font-size:14.5px;color:var(--biel-2);line-height:1.45;max-width:38ch}
+.hero-meta .dni-data{font-size:clamp(28px,2.7vw,38px)}/* tylko 23–24 nieco większe (Olimpia 12.10) */
+.hero-meta .m{font-size:17px;color:var(--biel-2);line-height:1.45;max-width:38ch}
 .hero-meta .m.mm{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
 .hero-meta .m b{display:block;color:var(--biel);font-weight:600}
 
@@ -178,7 +179,7 @@ main,header,footer{position:relative;z-index:2}
 .numer{position:absolute;z-index:1;pointer-events:none;font-weight:800;line-height:1;letter-spacing:-.05em;
   color:transparent;-webkit-text-stroke:1px rgba(229,246,163,.16);font-size:clamp(160px,28vw,420px);
   font-variant-numeric:tabular-nums;user-select:none}
-.numer.pr{right:-.04em;top:.05em}
+.numer.pr{right:.08em;top:.05em}
 .numer.pl{left:-.04em;bottom:-.14em}
 .numer.pr{color:transparent;-webkit-text-stroke:2px rgba(204,255,0,.5);filter:drop-shadow(0 0 14px rgba(204,255,0,.35))}
 .numer b{font-weight:800;color:transparent;-webkit-text-stroke:inherit}
@@ -438,7 +439,7 @@ footer .sygn a:hover{border-color:currentColor}
         <a class="btn btn-cien" href="game-jam/">0h Game Jam w trolejbusie</a>
       </div>
       <dl class="hero-meta">
-        <div><dt class="lbl">Kiedy</dt><dd class="v k">23–24</dd><dd class="m mm k">października 2026</dd></div>
+        <div><dt class="lbl">Kiedy</dt><dd class="v k dni-data">23–24</dd><dd class="m mm k">października 2026</dd></div>
         <div><dt class="lbl">Gdzie</dt><dd class="v k">PPNT Gdynia</dd><dd class="m k">al. Zwycięstwa 96/98<br>Budynek II, Sala Morska</dd></div>
       </dl>
     </div>
