@@ -1,0 +1,51 @@
+/* Illuminathon 2026 — wspólne tokeny obu stron (główna + zakładka 0h Game Jam).
+   Kolory z key visualu wydarzenia: limonka na mglistym granacie. */
+/* Paleta = Figma „Illuminathon” (strona assets), odczyt 11.10.2026 — materialy/branding/PALETA-FIGMA.md */
+:root{
+  --noc:#0D0F1D;          /* tło bazowe (Figma: najciemniejszy) */
+  --noc-2:#212544;        /* tło kart (Figma) */
+  --mgla:#3A3965;         /* fiolet mglisty (Figma: sylwetka Gdyni) */
+  --mgla-2:#7A6B9E;       /* fiolet jaśniejszy (Figma) */
+  --limonka:#CCFF00;      /* akcent główny (Figma: logo, start gradientu) */
+  --limonka-jasna:#E5F6A3;/* koniec gradientu logo (Figma) */
+  --zolty:#CCFF00;        /* akcent w tytułach = limonka Figmy */
+  --biel:#FCF9FF;         /* tekst główny (Figma: podkład jasny) */
+  --biel-2:#EAE4F6;       /* tekst drugorzędny (Figma: lawenda jasna) */
+  --szary:#B8A3C3;        /* etykiety, podpisy (Figma: lawenda szara) */
+  --linia:rgba(234,228,246,.12);
+  --linia-2:rgba(234,228,246,.22);
+
+  /* poświata kursora — kolor nadpisuje każda strona (główna: limonka, Game Jam: księżyc) */
+  --poswiata-rgb:204,255,0;   /* r,g,b — Game Jam podmienia na księżyc */
+  --poswiata-r:150px;         /* latarenka: jasny rdzeń + miękka poświata */
+  --mx:60vw;
+  --my:38vh;
+
+  --font:"Be Vietnam Pro",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --szer:1180px;
+  --bok:clamp(18px,4vw,48px);
+}
+
+/* warstwa poświaty — nad całą treścią (ostatnie dziecko body, z-index max, ponad nawigacją i .powrot), nie łapie kliknięć,
+   mix-blend-mode:screen tylko rozjaśnia (tekst pod spodem zostaje czytelny). Przesuwana TYLKO transformem. */
+.poswiata{
+  position:fixed;left:0;top:0;z-index:2147483000;pointer-events:none;mix-blend-mode:screen;
+  width:calc(var(--poswiata-r)*2);height:calc(var(--poswiata-r)*2);
+  /* latarenka: jasny rdzeń, potem poświata, która rozchodzi się miękko i GINIE do zera
+     dużo przed brzegiem (ostatni realny kolor na ~62%), bez border-radius = bez odcięcia koła */
+  background:radial-gradient(circle closest-side,
+    rgba(var(--poswiata-rgb),.42) 0%,
+    rgba(var(--poswiata-rgb),.30) 10%,
+    rgba(var(--poswiata-rgb),.19) 20%,
+    rgba(var(--poswiata-rgb),.11) 31%,
+    rgba(var(--poswiata-rgb),.06) 43%,
+    rgba(var(--poswiata-rgb),.028) 56%,
+    rgba(var(--poswiata-rgb),.01) 70%,
+    rgba(var(--poswiata-rgb),0) 84%);
+  transform:translate(calc(var(--mx) - var(--poswiata-r)),calc(var(--my) - var(--poswiata-r)));
+  will-change:transform;
+}
+@media (prefers-reduced-motion:reduce){
+  .poswiata{--mx:50vw;--my:30vh}
+}
