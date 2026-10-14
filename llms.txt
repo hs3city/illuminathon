@@ -1,0 +1,18 @@
+# Illuminathon 2026 — Światło na Gdynię
+
+> Illuminathon 2026 to 24-godzinny, interdyscyplinarny hackathon na styku sztuki, nauki i techniki, organizowany w Pomorskim Parku Naukowo-Technologicznym (PPNT) w Gdyni 23–24 października 2026 — w roku 100-lecia Gdyni.
+
+## Fakty
+- Termin: 23–24 października 2026
+- Miejsce: PPNT Gdynia, al. Zwycięstwa 96/98, Budynek II, Sala Morska
+- Udział: bezpłatny; zapisy przez Evenea
+- Wydarzenie towarzyszące: 0h Game Jam w zabytkowym trolejbusie (noc 24/25 października 2026)
+- Organizatorzy: Fundacja CODE:ME (https://codeme.pl), Hackerspace Trójmiasto (https://hs3.pl)
+- Partnerzy strategiczni: Gdynia (100-lecie miasta), PPNT Gdynia, Uniwersytet Morski w Gdyni
+
+## Strony
+- [Strona główna](https://illuminathon.hs3.pl/): opis wydarzenia, program hackathonu, warsztaty, poprzednie edycje
+- [0h Game Jam](https://illuminathon.hs3.pl/game-jam/): godzinny game jam w zabytkowym trolejbusie
+- [Zapisy (Evenea)](https://evenea.pl/wydarzenie/illuminathon-2026-swiatlo-na-gdynie-5pzqielo)
+- [Regulamin](https://codemepl.notion.site/Regulamin-Illuminathon-2026-wiat-o-na-Gdyni-3f7397b5bf7c807bba47d9b81416aeda)
+- [Polityka prywatności](https://illuminathon.hs3.pl/polityka-prywatnosci.html)
