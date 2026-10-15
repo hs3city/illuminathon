@@ -352,7 +352,7 @@ main,header,footer{position:relative;z-index:2}
 .loga a{display:flex;align-items:center;opacity:.9;transition:opacity .15s,filter .15s}
 .loga a:hover{opacity:1;filter:drop-shadow(0 0 14px rgba(204,255,0,.3))}
 .loga img{width:auto}
-.l-gdynia{height:54px}.l-gdynia100{height:72px}.l-ppnt{height:80px}.l-umg{height:100px}.l-codeme{height:28px}.l-hs3{height:60px}
+.l-gdynia{height:54px}.l-gdynia100{height:72px}.l-ppnt{height:80px}.l-umg{height:100px}.l-codeme{height:28px}.l-hs3{height:60px}.l-interizon{height:48px}
 .loga.pion{flex-direction:column;gap:clamp(20px,3vw,34px)}/* Gdynia nad PPNT (instrukcja zespołu 12.10.2026) */
 [hidden]{display:none!important}/* pewne ukrycie logotypów wstrzymanych do zatwierdzenia */
 /* społeczności: biel na granacie, kolor po najechaniu */
@@ -364,7 +364,7 @@ main,header,footer{position:relative;z-index:2}
 /* logotypy z nieprzezroczystym tłem: odwrócone + screen, więc tło znika, a znak jest jasny */
 .loga.spolecznosc img.op,.loga.spolecznosc li:hover img.op{filter:invert(1) grayscale(1);mix-blend-mode:screen;opacity:.85}
 .partnerzy .nota{margin-top:36px;font-size:14px;color:var(--szary);max-width:60ch}
-@media (max-width:640px){.l-gdynia{height:38px}.l-gdynia100{height:52px}.l-ppnt{height:58px}.l-umg{height:72px}.l-codeme{height:20px}.l-hs3{height:44px}
+@media (max-width:640px){.l-gdynia{height:38px}.l-gdynia100{height:52px}.l-ppnt{height:58px}.l-umg{height:72px}.l-codeme{height:20px}.l-hs3{height:44px}.l-interizon{height:36px}
   .loga.spolecznosc li{height:44px;max-width:110px}.loga.spolecznosc img{max-height:44px;max-width:110px}}
 
 /* ───────── finał + stopka ───────── */
@@ -666,6 +666,12 @@ footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
         <li><a target="_blank" href="https://www.gdynia.pl" rel="noopener" aria-label="Gdynia — 100-lecie miasta"><img class="l-gdynia100" src="assets/logo/gdynia-100-bialy.png" alt="Gdynia — 100-lecie miasta (1926–2026)" width="370" height="185" loading="lazy"></a></li>
         <li><a target="_blank" href="https://ppnt.pl" rel="noopener" aria-label="Pomorski Park Naukowo-Technologiczny Gdynia"><img class="l-ppnt" src="assets/logo/ppnt-bialy.svg" alt="Pomorski Park Naukowo-Technologiczny Gdynia" width="176" height="116" loading="lazy"></a></li>
         <li><a target="_blank" href="https://umg.edu.pl" rel="noopener" aria-label="Uniwersytet Morski w Gdyni"><img class="l-umg" src="assets/logo/umg.svg" alt="Uniwersytet Morski w Gdyni" width="277" height="329" loading="lazy"></a></li>
+      </ul>
+    </div>
+    <div class="grupa"><!-- partnerzy — trzeci dział (Interizon), 15.10.2026 -->
+      <span class="lbl">Partnerzy</span>
+      <ul class="loga">
+        <li><a target="_blank" href="https://interizon.pl" rel="noopener" aria-label="Interizon — Pomorski Klaster ICT"><img class="l-interizon" src="assets/logo/interizon-bialy.png" alt="Interizon — Pomorski Klaster ICT" width="460" height="120" loading="lazy"></a></li>
       </ul>
     </div>
     <div class="grupa" hidden><!-- społeczności gamedev — ukryte do zatwierdzenia, 12.10.2026 -->
