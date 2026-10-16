@@ -340,6 +340,33 @@ main,header,footer{position:relative;z-index:2}
 .galeria-podpis{margin-bottom:clamp(30px,4vh,44px)}
 @media (max-width:640px){.galeria{grid-template-columns:repeat(2,1fr)}}
 
+/* 06b mentorzy */
+.mentorzy{text-align:center}
+.mentorzy .sek-head{justify-content:center}
+.mentorzy .sek-head h2{margin-inline:auto}
+.mentorzy-siatka{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:clamp(20px,3vw,32px);grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:start}
+.mentor{background:var(--noc-2);border:1px solid var(--linia);border-radius:18px;padding:clamp(26px,3vw,34px) clamp(20px,2.5vw,28px);display:flex;flex-direction:column;align-items:center;text-align:center}
+.mentor-foto{width:clamp(116px,14vw,140px);height:clamp(116px,14vw,140px);border-radius:50%;object-fit:cover;border:2px solid var(--linia-2);margin-bottom:18px}
+.mentor-imie{margin:0 0 8px;font-size:19px;color:var(--biel)}
+.mentor-firma{margin:0;font-size:14px;line-height:1.45;color:var(--szary)}
+.mentor-firma b{display:block;color:var(--biel-2);font-weight:600;font-size:15px;margin-bottom:3px}
+.mentor-bio{width:100%;padding-top:18px}
+.mentor-bio summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--limonka);padding:8px 4px}
+.mentor-bio summary::-webkit-details-marker{display:none}
+.mentor-bio summary::after{content:"\25BE";font-size:9px}
+.mentor-bio[open] summary::after{content:"\25B4"}
+.mentor-bio .mniej{display:none}
+.mentor-bio[open] .wiecej{display:none}
+.mentor-bio[open] .mniej{display:inline}
+.mentor-rozwin{border-top:1px solid var(--linia);margin-top:8px;padding-top:16px;text-align:left}
+.mentor-spec{margin:0 0 14px;font-size:13px;line-height:1.5;color:var(--szary)}
+.mentor-bio-tekst p{margin:0;font-size:13.5px;line-height:1.62;color:var(--biel-2)}
+.mentor-bio-tekst p+p{margin-top:10px}
+.mentor-social{display:flex;gap:14px;justify-content:flex-start;margin-top:16px}
+.mentor-social a{display:flex;color:var(--szary);transition:color .15s,transform .15s}
+.mentor-social a:hover{color:var(--limonka);transform:translateY(-2px)}
+.mentor-social svg{width:22px;height:22px}
+@media (max-width:640px){.mentorzy-siatka{grid-template-columns:1fr;max-width:420px;margin-inline:auto}}
 /* 07 partnerzy */
 .partnerzy{text-align:center}
 .partnerzy .sek-head{justify-content:center}
@@ -352,7 +379,7 @@ main,header,footer{position:relative;z-index:2}
 .loga a{display:flex;align-items:center;opacity:.9;transition:opacity .15s,filter .15s}
 .loga a:hover{opacity:1;filter:drop-shadow(0 0 14px rgba(204,255,0,.3))}
 .loga img{width:auto}
-.l-gdynia{height:54px}.l-gdynia100{height:72px}.l-ppnt{height:80px}.l-umg{height:100px}.l-codeme{height:28px}.l-hs3{height:60px}.l-interizon{height:48px}
+.l-gdynia{height:54px}.l-gdynia100{height:72px}.l-ppnt{height:80px}.l-umg{height:100px}.l-codeme{height:28px}.l-hs3{height:60px}.l-interizon{height:48px}.l-icutech{height:34px}.l-catboat{height:58px}.l-resqvest{height:38px}
 .loga.pion{flex-direction:column;gap:clamp(20px,3vw,34px)}/* Gdynia nad PPNT (instrukcja zespołu 12.10.2026) */
 [hidden]{display:none!important}/* pewne ukrycie logotypów wstrzymanych do zatwierdzenia */
 /* społeczności: biel na granacie, kolor po najechaniu */
@@ -364,7 +391,7 @@ main,header,footer{position:relative;z-index:2}
 /* logotypy z nieprzezroczystym tłem: odwrócone + screen, więc tło znika, a znak jest jasny */
 .loga.spolecznosc img.op,.loga.spolecznosc li:hover img.op{filter:invert(1) grayscale(1);mix-blend-mode:screen;opacity:.85}
 .partnerzy .nota{margin-top:36px;font-size:14px;color:var(--szary);max-width:60ch}
-@media (max-width:640px){.l-gdynia{height:38px}.l-gdynia100{height:52px}.l-ppnt{height:58px}.l-umg{height:72px}.l-codeme{height:20px}.l-hs3{height:44px}.l-interizon{height:36px}
+@media (max-width:640px){.l-gdynia{height:38px}.l-gdynia100{height:52px}.l-ppnt{height:58px}.l-umg{height:72px}.l-codeme{height:20px}.l-hs3{height:44px}.l-interizon{height:36px}.l-icutech{height:26px}.l-catboat{height:44px}.l-resqvest{height:28px}
   .loga.spolecznosc li{height:44px;max-width:110px}.loga.spolecznosc img{max-height:44px;max-width:110px}}
 
 /* ───────── finał + stopka ───────── */
@@ -415,6 +442,7 @@ footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
       <li><a href="#program">Program</a></li>
       <li><a href="#towarzyszace">Warsztaty</a></li>
       <li><a href="game-jam/">0h Game Jam</a></li>
+      <li><a href="#mentorzy">Mentorzy</a></li>
       <li><a href="#partnerzy">Partnerzy</a></li>
     </ul>
     <a target="_blank" class="btn btn-swiatlo" href="https://evenea.pl/wydarzenie/illuminathon-2026-swiatlo-na-gdynie-5pzqielo" rel="noopener">Zapisz się</a>
@@ -645,6 +673,72 @@ footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
   </div>
 </section>
 
+<!-- MENTORZY (dodane 15.10.2026) -->
+<section class="sek mentorzy" id="mentorzy" aria-labelledby="h-mentorzy">
+  <div class="shell">
+    <div class="sek-head">
+      <h2 id="h-mentorzy">Nasi <span class="akc">mentorzy</span></h2>
+    </div>
+    <ul class="mentorzy-siatka">
+      <li class="mentor">
+        <img class="mentor-foto" src="assets/mentorzy/piotr-bejrowski-3.webp" alt="Piotr Bejrowski" width="480" height="480" loading="lazy">
+        <h3 class="mentor-imie">Piotr Bejrowski</h3>
+        <p class="mentor-firma"><b>PPNT Gdynia</b>Dział Rozwoju i Projektów · Sekcja Projektów Rozwojowych</p>
+        <details class="mentor-bio">
+          <summary><span class="wiecej">Czytaj więcej</span><span class="mniej">Zwiń</span></summary>
+          <div class="mentor-rozwin">
+            <p class="mentor-spec">Partnerstwa strategiczne · rozwój w regionalnym ekosystemie innowacji · finansowanie innowacji · przygotowanie do prezentacji projektu</p>
+            <div class="mentor-bio-tekst">
+              <p>Piotr Bejrowski – specjalista w zakresie rozwoju innowacji, zarządzania projektami i inicjatyw strategicznych. Zawodowo związany z Pomorskim Parkiem Naukowo-Technologicznym Gdynia, gdzie angażuje się w rozwój projektów wspierających innowacyjność i transformację technologiczną regionu. Zajmuje się inicjowaniem i koordynacją przedsięwzięć strategicznych, budowaniem partnerstw oraz rozwijaniem współpracy pomiędzy biznesem, nauką, administracją publiczną i instytucjami otoczenia biznesu. Koncentruje się na wzmacnianiu regionalnego ekosystemu innowacji, rozwijaniu sieci współpracy oraz tworzeniu warunków sprzyjających rozwojowi nowych technologii i przedsiębiorczości.</p>
+            </div>
+            <div class="mentor-social">
+            <a href="https://www.linkedin.com/in/piotr-bejrowski-9344b1270/" target="_blank" rel="noopener" aria-label="LinkedIn — Piotr Bejrowski"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.73v20.53C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.73C24 .78 23.2 0 22.22 0z"/></svg></a>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li class="mentor">
+        <img class="mentor-foto" src="assets/mentorzy/ewa-stefanowicz-wysocka-2.webp" alt="Ewa Stefanowicz-Wysocka" width="480" height="480" loading="lazy">
+        <h3 class="mentor-imie">Ewa Stefanowicz-Wysocka</h3>
+        <p class="mentor-firma"><b>Eve Wysocki Design</b>Founder</p>
+        <details class="mentor-bio">
+          <summary><span class="wiecej">Czytaj więcej</span><span class="mniej">Zwiń</span></summary>
+          <div class="mentor-rozwin">
+            <p class="mentor-spec">Innowacyjne projektowanie · metody zero-waste · rozwój produktów</p>
+            <div class="mentor-bio-tekst">
+              <p>Ewa Stefanowicz-Wysocka – projektantka, innowatorka i założycielka Eve Wysocki Design Studio w PPNT Gdynia. Ma ponad 20-letnie doświadczenie w branży kreatywnej, w tym jako Head Designer marki Reserved. Absolwentka London College of Fashion, specjalizuje się w innowacyjnym projektowaniu, metodach zero-waste i rozwoju produktów. Łączy kreatywne myślenie z praktycznym podejściem do rozwiązywania problemów i pracy zespołowej.</p>
+            </div>
+            <div class="mentor-social">
+            <a href="https://www.linkedin.com/in/evewysocki/" target="_blank" rel="noopener" aria-label="LinkedIn — Ewa Stefanowicz-Wysocka"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.73v20.53C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.73C24 .78 23.2 0 22.22 0z"/></svg></a>
+            <a href="https://www.instagram.com/evewysockidesign/" target="_blank" rel="noopener" aria-label="Instagram — Ewa Stefanowicz-Wysocka"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li class="mentor">
+        <img class="mentor-foto" src="assets/mentorzy/rafal-kuklinski-2.webp" alt="Rafał Kukliński" width="480" height="480" loading="lazy">
+        <h3 class="mentor-imie">Rafał Kukliński</h3>
+        <p class="mentor-firma"><b>SoundCloud</b>Senior Vice President, Engineering</p>
+        <details class="mentor-bio">
+          <summary><span class="wiecej">Czytaj więcej</span><span class="mniej">Zwiń</span></summary>
+          <div class="mentor-rozwin">
+            <p class="mentor-spec">People management · Software Development Lifecycle · Software Architecture · AI coding · Product/Program Management</p>
+            <div class="mentor-bio-tekst">
+              <p>Rafał Kukliński jest SVP of Engineering w SoundCloud, gdzie kieruje zespołami pracującymi nad uczeniem maszynowym, systemami rekomendacji, wyszukiwaniem i technologiami reklamowymi.</p>
+              <p>Zanim dołączył do SoundCloud, przez 10 lat pracował w Amazonie, pełniąc różne role inżynierskie i kierownicze — m.in. jako Director of Text-to-Speech Technology oraz dyrektor zarządzający Centrum Rozwoju Amazona w Polsce. Jego praca pomogła wprowadzić technologie syntezy mowy do produktów takich jak Alexa, Kindle czy Amazon Polly. Jednym z jego ulubionych projektów było użyczenie Alexie głosu Samuela L. Jacksona.</p>
+              <p>Mając doświadczenie w inżynierii oprogramowania i systemach rozproszonych, Rafał pracował również w General Electric i Lufthansie — nad technologiami od systemów lotniczych po analizę wideo.</p>
+              <p>Poza pracą fascynuje go to, jak działa świat — od polityki i psychologii po fizykę i technologię. Lubi tenis, jazdę na rowerze i aktywność fizyczną, a także jest dumnym ojcem dwóch córek.</p>
+            </div>
+            <div class="mentor-social">
+            <a href="https://www.instagram.com/rkuklinski/" target="_blank" rel="noopener" aria-label="Instagram — Rafał Kukliński"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+            </div>
+          </div>
+        </details>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <!-- ───────── 07 PARTNERZY ───────── -->
 <section class="sek partnerzy" id="partnerzy" aria-labelledby="h-partnerzy">
   <div class="shell">
@@ -672,6 +766,9 @@ footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
       <span class="lbl">Partnerzy</span>
       <ul class="loga">
         <li><a target="_blank" href="https://interizon.pl" rel="noopener" aria-label="Interizon — Pomorski Klaster ICT"><img class="l-interizon" src="assets/logo/interizon-bialy.png" alt="Interizon — Pomorski Klaster ICT" width="460" height="120" loading="lazy"></a></li>
+        <li><a target="_blank" href="https://resqvest.pl" rel="noopener" aria-label="ResQvest"><img class="l-resqvest" src="assets/logo/resqvest-bialy.webp" alt="ResQvest" width="560" height="136" loading="lazy"></a></li>
+        <li><a target="_blank" href="https://www.icutech.pl" rel="noopener" aria-label="ICU tech"><img class="l-icutech" src="assets/logo/icutech-bialy.webp" alt="ICU tech" width="416" height="83" loading="lazy"></a></li>
+        <li><img class="l-catboat" src="assets/logo/catboat-strings-bialy.webp" alt="Catboat Strings" width="283" height="170" loading="lazy"></li>
       </ul>
     </div>
     <div class="grupa" hidden><!-- społeczności gamedev — ukryte do zatwierdzenia, 12.10.2026 -->
