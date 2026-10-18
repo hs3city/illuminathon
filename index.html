@@ -370,12 +370,22 @@ main,header,footer{position:relative;z-index:2}
 .mentor-social svg{width:22px;height:22px}
 @media (max-width:640px){.mentorzy-siatka{grid-template-columns:1fr;max-width:420px;margin-inline:auto}}
 /* 07 partnerzy */
+.loga.kafelki{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(12px,1.8vw,22px);list-style:none;margin:26px 0 0;padding:0}
+.loga.kafelki li{display:flex;margin:0}
+.kafelek{display:flex;align-items:center;justify-content:center;background:#fff;border-radius:14px;padding:14px 22px;height:92px;min-width:146px;box-sizing:border-box;transition:transform .15s,box-shadow .15s}
+.kafelek img{max-height:60px;max-width:170px;width:auto;height:auto;object-fit:contain;display:block}
+.loga.kafelki a.kafelek{opacity:1}
+.loga.kafelki a.kafelek:hover{opacity:1;filter:none;transform:none;box-shadow:none}
+.loga.kafelki:not(.duze){max-width:58rem;margin-inline:auto}
+.loga.kafelki.duze .kafelek{height:130px;min-width:196px;padding:18px 30px;border-radius:16px}
+.loga.kafelki.duze .kafelek img{max-height:92px;max-width:236px}
+@media (max-width:640px){.kafelek{height:62px;min-width:102px;padding:9px 14px}.kafelek img{max-height:40px;max-width:130px}.loga.kafelki.duze .kafelek{height:88px;min-width:138px;padding:12px 18px}.loga.kafelki.duze .kafelek img{max-height:56px;max-width:166px}}
 .partnerzy{text-align:center}
 .partnerzy .sek-head{justify-content:center}
 .partnerzy .sek-head h2{margin-inline:auto}
 .partnerzy .nota{margin-inline:auto}
 .partnerzy .grupa{text-align:center}
-.partnerzy .grupa+.grupa{margin-top:52px;padding-top:44px;border-top:1px solid var(--linia)}
+.partnerzy .grupa+.grupa{margin-top:44px}
 .partnerzy .lbl{display:block;margin-bottom:26px}
 .loga{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(28px,5vw,72px)}
 .loga a{display:flex;align-items:center;opacity:.9;transition:opacity .15s,filter .15s}
@@ -762,30 +772,32 @@ footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
     <div class="sek-head">
       <h2 id="h-partnerzy">Organizatorzy i <span class="akc">partnerzy</span></h2>
     </div>
-    <!-- 13.10.2026 instrukcja zespołu (przez Olimpię): Organizatorzy pierwsi (CODE:ME, HS3),
-         potem Partnerzy strategiczni (Gdynia 100-lecie, PPNT, UMG). Niższe loga społeczności — ukryte do zatwierdzenia, NIE skasowane. -->
-    <div class="grupa"><!-- organizatorzy — pierwsi -->
+    <!-- 18.10.2026: partnerzy w KOLORZE na bialych kafelkach; 3 grupy, strategiczni duzi (decyzja Olimpii) -->
+    <div class="grupa">
       <span class="lbl">Organizatorzy</span>
-      <ul class="loga">
-        <li><a target="_blank" href="https://codeme.pl" rel="noopener" aria-label="Fundacja CODE:ME"><img class="l-codeme" src="assets/logo/codeme-bialy.svg" alt="Fundacja CODE:ME" width="142" height="21" loading="lazy"></a></li>
-        <li><a target="_blank" href="https://hs3.pl" rel="noopener" aria-label="Hackerspace Trójmiasto"><img class="l-hs3" src="assets/logo/hs3-600-bialy.png" alt="Hackerspace Trójmiasto" width="600" height="307" loading="lazy"></a></li>
+      <ul class="loga kafelki duze">
+        <li><a class="kafelek" target="_blank" href="https://codeme.pl" rel="noopener" aria-label="Fundacja CODE:ME"><img src="assets/logo/codeme.svg?v=4" alt="Fundacja CODE:ME" width="182" height="27" loading="lazy"></a></li>
+        <li><a class="kafelek" target="_blank" href="https://hs3.pl" rel="noopener" aria-label="Hackerspace Trójmiasto"><img src="assets/logo/hs3-600.png?v=4" alt="Hackerspace Trójmiasto" width="600" height="307" loading="lazy"></a></li>
       </ul>
     </div>
-    <div class="grupa"><!-- partnerzy strategiczni — drudzy -->
-      <span class="lbl">Partnerzy strategiczni</span>
-      <ul class="loga">
-        <li><a target="_blank" href="https://www.gdynia.pl" rel="noopener" aria-label="Gdynia — 100-lecie miasta"><img class="l-gdynia100" src="assets/logo/gdynia-100-bialy.png" alt="Gdynia — 100-lecie miasta (1926–2026)" width="370" height="185" loading="lazy"></a></li>
-        <li><a target="_blank" href="https://ppnt.pl" rel="noopener" aria-label="Pomorski Park Naukowo-Technologiczny Gdynia"><img class="l-ppnt" src="assets/logo/ppnt-bialy.svg" alt="Pomorski Park Naukowo-Technologiczny Gdynia" width="176" height="116" loading="lazy"></a></li>
-        <li><a target="_blank" href="https://umg.edu.pl" rel="noopener" aria-label="Uniwersytet Morski w Gdyni"><img class="l-umg" src="assets/logo/umg.svg" alt="Uniwersytet Morski w Gdyni" width="277" height="329" loading="lazy"></a></li>
+    <div class="grupa">
+      <span class="lbl">Partner strategiczny</span>
+      <ul class="loga kafelki duze">
+        <li><a class="kafelek" target="_blank" href="https://ppnt.pl" rel="noopener" aria-label="Pomorski Park Naukowo-Technologiczny Gdynia"><img src="assets/logo/ppnt.svg?v=4" alt="Pomorski Park Naukowo-Technologiczny Gdynia" width="176" height="116" loading="lazy"></a></li>
+        <li><a class="kafelek" target="_blank" href="https://umg.edu.pl" rel="noopener" aria-label="Uniwersytet Morski w Gdyni"><img src="assets/logo/partnerzy-kolor/umg.webp?v=4" alt="Uniwersytet Morski w Gdyni" width="165" height="200" loading="lazy"></a></li>
+        <li><a class="kafelek" target="_blank" href="https://www.gdynia.pl" rel="noopener" aria-label="Gdynia — 100-lecie miasta"><img src="assets/logo/partnerzy-kolor/gdynia.webp?v=4" alt="Gdynia — 100-lecie miasta" width="395" height="200" loading="lazy"></a></li>
       </ul>
     </div>
-    <div class="grupa"><!-- partnerzy — trzeci dział (Interizon), 15.10.2026 -->
+    <div class="grupa">
       <span class="lbl">Partnerzy</span>
-      <ul class="loga">
-        <li><a target="_blank" href="https://interizon.pl" rel="noopener" aria-label="Interizon — Pomorski Klaster ICT"><img class="l-interizon" src="assets/logo/interizon-bialy.png" alt="Interizon — Pomorski Klaster ICT" width="460" height="120" loading="lazy"></a></li>
-        <li><a target="_blank" href="https://resqvest.pl" rel="noopener" aria-label="ResQvest"><img class="l-resqvest" src="assets/logo/resqvest-bialy.webp" alt="ResQvest" width="560" height="136" loading="lazy"></a></li>
-        <li><a target="_blank" href="https://www.icutech.pl" rel="noopener" aria-label="ICU tech"><img class="l-icutech" src="assets/logo/icutech-bialy.webp" alt="ICU tech" width="416" height="83" loading="lazy"></a></li>
-        <li><img class="l-catboat" src="assets/logo/catboat-strings-bialy.webp" alt="Catboat Strings" width="283" height="170" loading="lazy"></li>
+      <ul class="loga kafelki">
+        <li><a class="kafelek" target="_blank" href="https://resqvest.pl" rel="noopener" aria-label="ResQvest"><img src="assets/logo/partnerzy-kolor/resqvest.webp?v=4" alt="ResQvest" width="560" height="137" loading="lazy"></a></li>
+        <li><a class="kafelek" target="_blank" href="https://interizon.pl" rel="noopener" aria-label="Interizon — Pomorski Klaster ICT"><img src="assets/logo/partnerzy-kolor/interizon.webp?v=4" alt="Interizon — Pomorski Klaster ICT" width="753" height="200" loading="lazy"></a></li>
+        <li><span class="kafelek"><img src="assets/logo/partnerzy-kolor/catboat-strings.webp?v=4" alt="Catboat Strings" width="333" height="200" loading="lazy"></span></li>
+        <li><a class="kafelek" target="_blank" href="https://www.icutech.pl" rel="noopener" aria-label="ICU tech"><img src="assets/logo/partnerzy-kolor/icutech-pl.webp?v=4" alt="ICU tech" width="297" height="60" loading="lazy"></a></li>
+        <li><span class="kafelek"><img src="assets/logo/partnerzy-kolor/starter.webp?v=4" alt="Starter" width="750" height="200" loading="lazy"></span></li>
+        <li><span class="kafelek"><img src="assets/logo/partnerzy-kolor/baranska.webp?v=4" alt="barańska design" width="200" height="200" loading="lazy"></span></li>
+        <li><span class="kafelek"><img src="assets/logo/partnerzy-kolor/ctp.webp?v=4" alt="Creative Tech Poland" width="511" height="200" loading="lazy"></span></li>
       </ul>
     </div>
     <div class="grupa" hidden><!-- społeczności gamedev — ukryte do zatwierdzenia, 12.10.2026 -->
