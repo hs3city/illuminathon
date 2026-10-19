@@ -81,6 +81,9 @@ header{position:absolute;inset:0 0 auto;z-index:40}
 .menu-btn[aria-expanded="true"] .bar{background:transparent}
 .menu-btn[aria-expanded="true"] .bar::before{top:0;transform:rotate(45deg)}
 .menu-btn[aria-expanded="true"] .bar::after{top:0;transform:rotate(-45deg)}
+.belka-ue{background:#fff;padding:20px 16px;display:flex;justify-content:center;position:relative;z-index:2147483001}
+.belka-ue img{width:100%;max-width:800px;height:auto;display:block}
+@media(max-width:560px){.belka-ue{padding:16px 12px}}
 @media(max-width:820px){
   .menu-btn{display:flex}
   .nav ul{display:none;position:absolute;top:100%;right:0;min-width:220px;flex-direction:column;gap:0;
@@ -416,6 +419,10 @@ header{top:var(--powrot-h)}
     <p><a class="pp" target="_blank" href="https://codemepl.notion.site/Regulamin-Illuminathon-2026-wiat-o-na-Gdyni-3f7397b5bf7c807bba47d9b81416aeda" rel="noopener">Regulamin</a></p>
     <p><span class="sygn">Realizacja: <a href="https://paradizart.pl/" target="_blank" rel="noopener">Paradiz Art</a></span></p>
 </footer>
+
+<div class="belka-ue">
+  <img src="../assets/logo/edih-feng-belka-pl.png" alt="Fundusze Europejskie dla Nowoczesnej Gospodarki · Rzeczpospolita Polska · Dofinansowane przez Unię Europejską · Pomeranian EDIH" width="1653" height="175" loading="lazy">
+</div>
 
 <script src="../shared/poswiata.js?v=1011b" defer></script>
 <script>
