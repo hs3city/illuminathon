@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Generator grafik — Illuminathon / Game Jam</title>
+<meta name="robots" content="noindex">
+<!-- build: rola (badge) + pinch-zoom mobile + pusty stan kolka + credit -->
+<link rel="stylesheet" href="../assets/fonty/fonty.css">
+<link rel="stylesheet" href="../assets/fonty/fonty-gamejam.css">
+<style>
+  :root{
+    --bg:#0a081e; --panel:#141233; --panel2:#1d1a44; --linia:rgba(238,235,247,.12);
+    --tekst:#eceaf7; --szary:#a7a3c4; --limonka:#CCFF00; --koral:#FF564A; --akcent:var(--limonka);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:radial-gradient(120% 90% at 50% 0%, #15123a 0%, var(--bg) 60%) fixed;
+    color:var(--tekst); font-family:"Be Vietnam Pro",system-ui,sans-serif;
+    min-height:100vh; padding:env(safe-area-inset-top,0) 16px env(safe-area-inset-bottom,0);
+  }
+  .wrap{max-width:1020px; margin:0 auto; padding:22px 0 24px}
+  .powrot{position:sticky; top:0; z-index:100; display:flex; align-items:center; gap:11px; height:46px;
+    margin:0 -16px; padding:0 16px; background:#0b0e1f; border-bottom:1px solid var(--linia); text-decoration:none}
+  .powrot .pw-s{color:var(--tekst); font-size:17px; line-height:1; transition:color .15s}
+  .powrot .pw-logo{height:15px; width:auto; display:block}
+  .powrot .pw-m{font-family:"Be Vietnam Pro",system-ui,sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--szary)}
+  .powrot:hover .pw-s{color:var(--akcent)}
+  @media(max-width:560px){.powrot .pw-m i{display:none}}
+  h1{font-size:clamp(21px,3.4vw,29px); font-weight:800; margin:0 0 4px; letter-spacing:-.02em}
+  .sub{color:var(--szary); font-size:14px; margin:0 0 20px; line-height:1.5}
+  .taby{display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap}
+  .tab{appearance:none; border:1px solid var(--linia); background:var(--panel); color:var(--tekst);
+    padding:11px 20px; border-radius:999px; font:inherit; font-weight:600; cursor:pointer; transition:all .15s; font-size:15px}
+  .tab:hover{border-color:var(--szary)}
+  .tab[aria-selected="true"]{background:var(--akcent); color:#15102e; border-color:var(--akcent)}
+  .uklad{display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:24px; align-items:start}
+  @media (max-width:800px){.uklad{grid-template-columns:1fr}}
+  .scena{position:relative; background:var(--panel); border:1px solid var(--linia); border-radius:18px;
+    padding:14px; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center}
+  canvas{width:100%; height:auto; border-radius:10px; display:block; touch-action:none; cursor:pointer}
+  canvas.ma{cursor:grab}
+  canvas.ma.drag{cursor:grabbing}
+  .panel{display:flex; flex-direction:column; gap:14px}
+  .karta{background:var(--panel); border:1px solid var(--linia); border-radius:16px; padding:16px}
+  .karta h2{font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--szary); margin:0 0 11px; font-weight:700}
+  .tla{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+  .tla .mini{aspect-ratio:1/1; border-radius:9px; border:2px solid transparent; cursor:pointer; overflow:hidden;
+    background-size:cover; background-position:center; transition:border-color .15s}
+  .tla .mini[aria-pressed="true"]{border-color:var(--akcent)}
+  .drop{border:2px dashed var(--linia); border-radius:12px; padding:18px 12px; text-align:center; cursor:pointer;
+    transition:all .15s; color:var(--szary); font-size:14px; line-height:1.5}
+  .drop:hover,.drop.hot{border-color:var(--akcent); color:var(--tekst); background:rgba(204,255,0,.05)}
+  .drop b{color:var(--tekst)}
+  .row{display:flex; align-items:center; gap:12px; margin-top:12px; font-size:13px; color:var(--szary)}
+  .row label{min-width:46px}
+  input[type=range]{flex:1; accent-color:var(--akcent)}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{appearance:none; border:1px solid var(--linia); background:var(--panel2); color:var(--tekst);
+    padding:9px 13px; border-radius:10px; font:inherit; font-weight:600; font-size:13px; cursor:pointer; transition:all .15s}
+  .chip:hover{border-color:var(--szary)}
+  .chip[aria-pressed="true"]{background:var(--akcent); color:#15102e; border-color:var(--akcent)}
+  .rola-input{width:100%; margin-top:10px; padding:11px 12px; border-radius:10px; border:1px solid var(--linia);
+    background:var(--panel2); color:var(--tekst); font:inherit; font-size:14px}
+  .rola-input::placeholder{color:var(--szary)}
+  .rola-input:focus{outline:none; border-color:var(--akcent)}
+  .btny{display:flex; gap:10px}
+  button.akcja{flex:1; border:none; border-radius:12px; padding:14px; font:inherit; font-weight:700; font-size:15px;
+    cursor:pointer; transition:transform .1s, filter .15s}
+  button.akcja:hover{filter:brightness(1.06)} button.akcja:active{transform:translateY(1px)}
+  .pobierz{background:var(--akcent); color:#15102e}
+  .reset{background:var(--panel2); color:var(--tekst); flex:0 0 auto; padding:14px 16px}
+  .hint{font-size:12px; color:var(--szary); line-height:1.5; margin-top:10px}
+  .stopka{max-width:1020px; margin:0 auto; padding:18px 0 10px; text-align:center; color:var(--szary);
+    font-size:12.5px; line-height:1.8; letter-spacing:.02em}
+  .stopka a{color:var(--tekst); text-decoration:none; border-bottom:1px solid var(--linia)}
+  .stopka a:hover{color:var(--akcent); border-color:var(--akcent)}
+  .stopka .sep{opacity:.5; margin:0 8px}
+</style>
+</head>
+<body>
+<a class="powrot" href="../">
+  <span class="pw-s" aria-hidden="true">←</span>
+  <img class="pw-logo" src="assets/il-logo-white.png" alt="illuminathon">
+  <span class="pw-m">Światło na Gdynię <i>· 23–24.10.2026</i></span>
+</a>
+<div class="wrap">
+  <h1>Generator grafik na social media</h1>
+  <p class="sub">Dotknij kółka i dodaj swoje zdjęcie, wybierz rolę i tło → pobierasz gotowy kwadrat 1080×1080.</p>
+
+  <div class="taby" role="tablist" aria-label="Wariant">
+    <button class="tab" role="tab" aria-selected="true" data-w="illuminathon">Illuminathon</button>
+    <button class="tab" role="tab" aria-selected="false" data-w="gamejam">Game Jam w trolejbusie</button>
+  </div>
+
+  <div class="uklad">
+    <div class="scena">
+      <canvas id="plotno" width="1080" height="1080" aria-label="Podgląd grafiki"></canvas>
+    </div>
+
+    <div class="panel">
+      <div class="karta">
+        <h2>Zdjęcie w kółku</h2>
+        <div class="drop" id="drop"><b>Kliknij / dotknij</b> lub upuść zdjęcie<br><span style="font-size:12px">JPG / PNG</span></div>
+        <input type="file" id="plik" accept="image/*" hidden>
+        <div class="row"><label for="zoom">Zoom</label><input type="range" id="zoom" min="100" max="320" value="100" step="1"></div>
+        <div class="hint">Przeciągnij zdjęcie na podglądzie, żeby ustawić kadr.<br>📱 Na telefonie: <b>szczypnij dwoma palcami</b> w kółku, żeby przybliżyć/oddalić.</div>
+      </div>
+
+      <div class="karta">
+        <h2>Twoja rola (napis na grafice)</h2>
+        <div class="chips" id="chipy"></div>
+        <input type="text" class="rola-input" id="rolaInput" maxlength="32" placeholder="…lub wpisz własną rolę">
+      </div>
+
+      <div class="karta">
+        <h2>Tło</h2>
+        <div class="tla" id="tla"></div>
+      </div>
+
+      <div class="karta">
+        <h2>Pobierz</h2>
+        <div class="btny">
+          <button class="akcja pobierz" id="pobierz">Pobierz PNG 1080×1080</button>
+          <button class="akcja reset" id="reset" title="Reset kadru">⟳</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="stopka">
+  Realizacja: <a href="https://paradizart.pl" target="_blank" rel="noopener">Paradiz Art</a>
+  <span class="sep">·</span>
+  <a href="https://illuminathon.hs3.pl" target="_blank" rel="noopener">illuminathon.hs3.pl</a>
+</footer>
+
+<script>
+const SIZE = 1080;
+const canvas = document.getElementById('plotno');
+const ctx = canvas.getContext('2d');
+
+const CFG = {
+  illuminathon: {
+    logo:'assets/il-logo-color.png', logoW:0.60, akcent:'#CCFF00', tlo:'#120c33', scrim:'10,8,30', font:'Be Vietnam Pro',
+    tagline:'ŚWIATŁO NA GDYNIĘ', data:'23–24.10.2026', miejsce:'PPNT GDYNIA · illuminathon.hs3.pl',
+    tla:['assets/tla/tlo-aura-2.webp','assets/tla/il-bg-1.webp','assets/tla/tlo-skrzydla.webp','assets/tla/il-bg-2.webp','assets/tla/il-bg-3.webp'],
+  },
+  gamejam: {
+    logo:null, akcent:'#FF564A', krem:'#F4EFE2', tlo:'#0b0e1f', scrim:'6,9,18', font:'Jost',
+    tytul:['0h','GAME JAM','w trolejbusie'], data:'NOC 24/25.10.2026', miejsce:'GDYNIA · Hackathon 24h w PPNT',
+    tla:['assets/tla/tlo-trolejbus-v5.webp'],
+  }
+};
+
+// role: krotkie etykiety (chipy). Wlasna rola = pole tekstowe. Diakrytyki PL dociagane w init().
+const ROLE = ['Uczestnik','Uczestniczka','Mentor','Wolontariusz','Organizator','Partner','Partner strategiczny','Partner merytoryczny','Partner społecznościowy'];
+
+const stan = { w:'illuminathon', bg:CFG.illuminathon.tla[0], img:null, base:1, zoom:1, ox:0, oy:0, rola:'' };
+const cache = {};
+
+function loadImg(src){
+  if(cache[src]) return Promise.resolve(cache[src]);
+  return new Promise((res,rej)=>{ const i=new Image(); i.onload=()=>{cache[src]=i; res(i);}; i.onerror=rej; i.src=src; });
+}
+
+async function init(){
+  // fonty z polskimi znakami (podzbior latin-ext) — bez tego diakrytyki znikaja na canvasie
+  const PL='ąćęłńóśźżĄĆĘŁŃÓŚŹŻ 0123456789';
+  try{ await Promise.all([
+    document.fonts.load('800 62px "Be Vietnam Pro"', PL), document.fonts.load('700 42px "Be Vietnam Pro"', PL),
+    document.fonts.load('600 30px "Be Vietnam Pro"', PL), document.fonts.load('900 118px "Jost"', PL),
+    document.fonts.load('800 90px "Jost"', PL), document.fonts.load('600 46px "Jost"', PL),
+  ]); }catch(e){}
+  try{ await document.fonts.ready; }catch(e){}
+  try{ await loadImg(CFG.illuminathon.logo); }catch(e){}
+  budujRole();
+  budujTla();
+  await wybierzTlo(stan.bg);
+}
+
+function boxKola(){ return {cx:SIZE/2, cy:588, r:272}; }
+function policzBase(){ if(!stan.img) return; const box=2*boxKola().r; stan.base=Math.max(box/stan.img.width, box/stan.img.height); }
+function skala(){ return stan.base * stan.zoom; }
+
+function budujTla(){
+  const wrap=document.getElementById('tla'); wrap.innerHTML='';
+  CFG[stan.w].tla.forEach(src=>{
+    const d=document.createElement('div'); d.className='mini'; d.dataset.bg=src;
+    d.style.backgroundImage=`url(${src})`; d.setAttribute('aria-pressed', stan.bg===src);
+    d.onclick=()=>wybierzTlo(src); wrap.appendChild(d);
+  });
+}
+async function wybierzTlo(bg){
+  stan.bg=bg;
+  document.querySelectorAll('#tla .mini').forEach(m=>m.setAttribute('aria-pressed', m.dataset.bg===bg));
+  try{ await loadImg(bg); }catch(e){}
+  rysuj();
+}
+
+// ——— ROLA (chipy + wlasna) ———
+function budujRole(){
+  const wrap=document.getElementById('chipy'); wrap.innerHTML='';
+  wrap.appendChild(mkChip('— bez roli —',''));
+  ROLE.forEach(r=>wrap.appendChild(mkChip(r,r)));
+  oznaczRole();
+}
+function mkChip(label,val){
+  const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=label; b.dataset.val=val;
+  b.onclick=()=>{ stan.rola=val; document.getElementById('rolaInput').value=''; oznaczRole(); rysuj(); };
+  return b;
+}
+function oznaczRole(){ document.querySelectorAll('#chipy .chip').forEach(c=>c.setAttribute('aria-pressed', c.dataset.val===stan.rola)); }
+
+function coverRect(img, bw, bh){ return Math.max(bw/img.width, bh/img.height); }
+function tloGrafika(){
+  const c=CFG[stan.w];
+  if(cache[stan.bg]){
+    const img=cache[stan.bg], sc=coverRect(img,SIZE,SIZE), dw=img.width*sc, dh=img.height*sc;
+    ctx.drawImage(img,(SIZE-dw)/2,(SIZE-dh)/2,dw,dh);
+    let s=ctx.createLinearGradient(0,0,0,SIZE*0.34); s.addColorStop(0,`rgba(${c.scrim},.72)`); s.addColorStop(1,`rgba(${c.scrim},0)`);
+    ctx.fillStyle=s; ctx.fillRect(0,0,SIZE,SIZE*0.34);
+    s=ctx.createLinearGradient(0,SIZE*0.72,0,SIZE); s.addColorStop(0,`rgba(${c.scrim},0)`); s.addColorStop(1,`rgba(${c.scrim},.9)`);
+    ctx.fillStyle=s; ctx.fillRect(0,SIZE*0.72,SIZE,SIZE*0.28);
+  }else{ ctx.fillStyle=c.tlo; ctx.fillRect(0,0,SIZE,SIZE); }
+}
+function kolo(){
+  const c=CFG[stan.w], {cx,cy,r}=boxKola();
+  ctx.save(); ctx.shadowColor=c.akcent; ctx.shadowBlur=36;
+  ctx.beginPath(); ctx.arc(cx,cy,r+6,0,7); ctx.strokeStyle=c.akcent; ctx.lineWidth=8; ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.beginPath(); ctx.arc(cx,cy,r,0,7); ctx.clip();
+  if(stan.img){
+    const sc=skala(), dw=stan.img.width*sc, dh=stan.img.height*sc;
+    let x=cx-dw/2+stan.ox, y=cy-dh/2+stan.oy;
+    if(x>cx-r) x=cx-r; if(x+dw<cx+r) x=cx+r-dw;
+    if(y>cy-r) y=cy-r; if(y+dh<cy+r) y=cy+r-dh;
+    stan.ox=x-(cx-dw/2); stan.oy=y-(cy-dh/2);
+    ctx.drawImage(stan.img,x,y,dw,dh);
+  }else{
+    // pusty stan: kontekstowa podpowiedz w srodku kolka (przyciemnione wnetrze = czytelny napis)
+    ctx.fillStyle='rgba(10,8,30,.52)'; ctx.fillRect(cx-r,cy-r,2*r,2*r);
+    ctx.strokeStyle=c.akcent; ctx.lineWidth=7; ctx.lineCap='round';
+    const iy=cy-78, ir=46;
+    ctx.beginPath(); ctx.arc(cx,iy,ir,0,7); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx-24,iy); ctx.lineTo(cx+24,iy); ctx.moveTo(cx,iy-24); ctx.lineTo(cx,iy+24); ctx.stroke();
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillStyle=c.akcent; ctx.font=`800 46px "${c.font}"`; ctx.fillText('Dodaj zdjęcie', cx, cy+36);
+    ctx.fillStyle='rgba(236,234,247,.72)'; ctx.font=`600 27px "${c.font}"`; ctx.fillText('kliknij lub dotknij kółka', cx, cy+86);
+  }
+  ctx.restore();
+}
+function branding(){
+  const c=CFG[stan.w];
+  ctx.textAlign='center'; ctx.textBaseline='alphabetic';
+  if(stan.w==='illuminathon'){
+    const lg=cache[c.logo];
+    if(lg){ const w=SIZE*c.logoW, h=w*(lg.height/lg.width), x=(SIZE-w)/2, yy=92;
+      ctx.drawImage(lg,x,yy,w,h);
+      ctx.font='700 38px "Be Vietnam Pro"'; ctx.fillStyle=c.akcent; ctx.letterSpacing='9px';
+      ctx.fillText(c.tagline,SIZE/2+4,yy+h+56); ctx.letterSpacing='0px'; }
+  }else{
+    ctx.font='900 96px "Jost"'; ctx.fillStyle=c.akcent; ctx.fillText(c.tytul[0],SIZE/2,150);
+    ctx.font='800 72px "Jost"'; ctx.fillStyle=c.krem; ctx.letterSpacing='2px'; ctx.fillText(c.tytul[1],SIZE/2,228); ctx.letterSpacing='0px';
+    ctx.font='600 40px "Jost"'; ctx.fillStyle=c.akcent; ctx.fillText(c.tytul[2],SIZE/2,282);
+  }
+  ctx.fillStyle=c.akcent; ctx.fillRect(SIZE/2-44,902,88,5);
+  ctx.fillStyle='#fff'; ctx.font=`800 60px "${c.font}"`; ctx.fillText(c.data,SIZE/2,972);
+  ctx.fillStyle=c.akcent; ctx.font=`600 29px "${c.font}"`; ctx.letterSpacing='1px'; ctx.fillText(c.miejsce,SIZE/2,1018); ctx.letterSpacing='0px';
+}
+
+function roundRect(x,y,w,h,r){
+  ctx.beginPath(); ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+function rola(){
+  const c=CFG[stan.w], txt=(stan.rola||'').trim();
+  if(!txt) return;
+  const up=txt.toUpperCase();
+  ctx.save();
+  ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.letterSpacing='2px';
+  let fs=42; ctx.font=`800 ${fs}px "${c.font}"`;
+  let tw=ctx.measureText(up).width;
+  while(tw+96>960 && fs>24){ fs-=2; ctx.font=`800 ${fs}px "${c.font}"`; tw=ctx.measureText(up).width; }
+  const h=Math.round(fs*1.82), padX=40, bw=tw+padX*2, bx=SIZE/2-bw/2, by=846, rr=16;
+  // bialy zaokraglony prostokat (spojne z seria grafik partnerskich), cien dla odklejenia od zdjecia
+  ctx.shadowColor='rgba(0,0,0,.42)'; ctx.shadowBlur=26; ctx.shadowOffsetY=8;
+  roundRect(bx,by-h/2,bw,h,rr); ctx.fillStyle='#ffffff'; ctx.fill();
+  ctx.shadowColor='transparent';
+  ctx.fillStyle='#1b1550'; ctx.fillText(up,SIZE/2,by+2);
+  ctx.letterSpacing='0px';
+  ctx.restore();
+}
+
+function rysuj(){ ctx.clearRect(0,0,SIZE,SIZE); tloGrafika(); kolo(); branding(); rola(); }
+
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  t.setAttribute('aria-selected','true'); stan.w=t.dataset.w;
+  document.documentElement.style.setProperty('--akcent',CFG[stan.w].akcent);
+  stan.bg=CFG[stan.w].tla[0];
+  policzBase(); budujTla(); wybierzTlo(stan.bg);
+}));
+
+const drop=document.getElementById('drop'), plik=document.getElementById('plik');
+drop.addEventListener('click',()=>plik.click());
+plik.addEventListener('change',e=>{ if(e.target.files[0]) wczytaj(e.target.files[0]); });
+['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('hot');}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('hot');}));
+drop.addEventListener('drop',e=>{const f=e.dataTransfer.files[0]; if(f&&f.type.startsWith('image/')) wczytaj(f);});
+function wczytaj(file){
+  const r=new FileReader();
+  r.onload=ev=>{ const i=new Image(); i.onload=()=>{
+    stan.img=i; stan.zoom=1; stan.ox=0; stan.oy=0; policzBase();
+    document.getElementById('zoom').value=100; canvas.classList.add('ma');
+    drop.innerHTML='<b>Zmień zdjęcie</b><br><span style="font-size:12px">klik / dotknij lub upuść inne</span>';
+    rysuj();
+  }; i.src=ev.target.result; };
+  r.readAsDataURL(file);
+}
+
+// ——— ZOOM (wokol punktu) ———
+function zoomDo(nz,pcx,pcy){
+  if(!stan.img) return;
+  nz=Math.max(1,Math.min(nz,3.2));
+  const {cx,cy}=boxKola(), s0=skala();
+  const u=(pcx-(cx-stan.img.width*s0/2+stan.ox))/s0;
+  const v=(pcy-(cy-stan.img.height*s0/2+stan.oy))/s0;
+  stan.zoom=nz; const s1=skala();
+  stan.ox=pcx-u*s1-(cx-stan.img.width*s1/2);
+  stan.oy=pcy-v*s1-(cy-stan.img.height*s1/2);
+  document.getElementById('zoom').value=Math.round(stan.zoom*100); rysuj();
+}
+document.getElementById('zoom').addEventListener('input',e=>{ const {cx,cy}=boxKola(); zoomDo(e.target.value/100, cx, cy); });
+document.getElementById('reset').addEventListener('click',()=>{ stan.zoom=1; stan.ox=0; stan.oy=0; document.getElementById('zoom').value=100; rysuj(); });
+document.getElementById('rolaInput').addEventListener('input',e=>{ stan.rola=e.target.value; oznaczRole(); rysuj(); });
+
+// ——— GESTY: drag (1 palec/mysz) + pinch-zoom (2 palce) + klik pustego kolka ———
+const pointers=new Map();
+let panPrev=null, pinchPrev=null;
+function kScr(){ return SIZE/canvas.getBoundingClientRect().width; }
+function canvasPt(cx_,cy_){ const r=canvas.getBoundingClientRect(), k=SIZE/r.width; return {x:(cx_-r.left)*k, y:(cy_-r.top)*k}; }
+function dwaPkt(){ const a=[...pointers.values()]; return [a[0],a[1]]; }
+function pinchStan(){ const [a,b]=dwaPkt(); return {d:Math.hypot(a.x-b.x,a.y-b.y), mx:(a.x+b.x)/2, my:(a.y+b.y)/2}; }
+
+canvas.addEventListener('pointerdown',e=>{
+  if(!stan.img){ plik.click(); return; }              // pusty stan → wybor zdjecia
+  canvas.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pointers.size===1){ panPrev={x:e.clientX,y:e.clientY}; canvas.classList.add('drag'); }
+  else if(pointers.size===2){ panPrev=null; pinchPrev=pinchStan(); }
+});
+canvas.addEventListener('pointermove',e=>{
+  if(!pointers.has(e.pointerId)) return;
+  pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pointers.size>=2){
+    const cur=pinchStan(); if(!pinchPrev){ pinchPrev=cur; return; }
+    const {cx,cy}=boxKola(), s0=skala();
+    const p0=canvasPt(pinchPrev.mx,pinchPrev.my);
+    const u=(p0.x-(cx-stan.img.width*s0/2+stan.ox))/s0;
+    const v=(p0.y-(cy-stan.img.height*s0/2+stan.oy))/s0;
+    stan.zoom=Math.max(1,Math.min(stan.zoom*cur.d/pinchPrev.d,3.2));
+    const s1=skala(), p1=canvasPt(cur.mx,cur.my);
+    stan.ox=p1.x-u*s1-(cx-stan.img.width*s1/2);
+    stan.oy=p1.y-v*s1-(cy-stan.img.height*s1/2);
+    document.getElementById('zoom').value=Math.round(stan.zoom*100);
+    pinchPrev=cur; rysuj();
+  }else if(panPrev){
+    const k=kScr(); stan.ox+=(e.clientX-panPrev.x)*k; stan.oy+=(e.clientY-panPrev.y)*k;
+    panPrev={x:e.clientX,y:e.clientY}; rysuj();
+  }
+});
+function koniecPtr(e){
+  pointers.delete(e.pointerId); canvas.classList.remove('drag');
+  if(pointers.size===1){ const p=[...pointers.values()][0]; panPrev={x:p.x,y:p.y}; pinchPrev=null; canvas.classList.add('drag'); }
+  else if(pointers.size===0){ panPrev=null; pinchPrev=null; }
+}
+['pointerup','pointercancel'].forEach(ev=>canvas.addEventListener(ev,koniecPtr));
+canvas.addEventListener('wheel',e=>{ if(!stan.img) return; e.preventDefault(); const p=canvasPt(e.clientX,e.clientY); zoomDo(stan.zoom*(e.deltaY<0?1.08:1/1.08), p.x, p.y); },{passive:false});
+
+document.getElementById('pobierz').addEventListener('click',()=>{
+  rysuj();
+  canvas.toBlob(blob=>{ const a=document.createElement('a'); const d=new Date().toISOString().slice(0,10).replace(/-/g,'');
+    a.href=URL.createObjectURL(blob); a.download=`${stan.w}-${d}.png`; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),2000); },'image/png');
+});
+
+init();
+</script>
+</body>
+</html>

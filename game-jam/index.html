@@ -72,8 +72,25 @@ header{position:absolute;inset:0 0 auto;z-index:40}
   text-transform:uppercase;color:rgba(244,239,226,.88);transition:color .2s;
   text-shadow:0 1px 12px rgba(5,9,15,.9),0 1px 3px rgba(5,9,15,.7)}
 .nav ul a:hover{color:var(--ember-lit)}
+.nav{position:relative}
+.menu-btn{display:none;appearance:none;background:transparent;border:1px solid rgba(244,239,226,.3);border-radius:10px;width:46px;height:40px;cursor:pointer;padding:0;align-items:center;justify-content:center}
+.menu-btn .bar{position:relative;width:20px;height:2px;background:#F4EFE2;transition:background .15s}
+.menu-btn .bar::before,.menu-btn .bar::after{content:"";position:absolute;left:0;width:20px;height:2px;background:#F4EFE2;transition:transform .2s,top .2s}
+.menu-btn .bar::before{top:-6px}
+.menu-btn .bar::after{top:6px}
+.menu-btn[aria-expanded="true"] .bar{background:transparent}
+.menu-btn[aria-expanded="true"] .bar::before{top:0;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] .bar::after{top:0;transform:rotate(-45deg)}
 @media(max-width:820px){
-  .nav ul{display:none}}
+  .menu-btn{display:flex}
+  .nav ul{display:none;position:absolute;top:100%;right:0;min-width:220px;flex-direction:column;gap:0;
+    background:rgba(11,14,31,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(205,229,107,.25);border-radius:12px;padding:6px 0;box-shadow:0 18px 40px rgba(0,0,0,.5);z-index:60}
+  .nav ul.otwarte{display:flex}
+  .nav ul li{width:100%}
+  .nav ul a{display:block;padding:13px 20px}
+  .nav ul li+li a{border-top:1px solid rgba(244,239,226,.12)}
+}
 .hero{position:relative;
   min-height:clamp(470px,74vh,940px);
   min-height:clamp(470px,74svh,940px);
@@ -252,11 +269,13 @@ header{top:var(--powrot-h)}
         <span>w trolejbusie</span>
       </span>
     </div>
-    <ul>
+    <ul id="gj-menu">
       <li><a href="#warunki">Warunki</a></li>
       <li><a href="#dowod">Poprzednia edycja</a></li>
       <li><a href="#zapisy">Zapisy</a></li>
+      <li><a href="../generator/">Generator grafik</a></li>
     </ul>
+    <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="gj-menu"><span class="bar"></span></button>
   </div>
 </header>
 
@@ -411,6 +430,16 @@ function tick(){
   b.querySelector('[data-s]').textContent = pad(s%60);
 }
 tick(); setInterval(tick,1000);
+
+/* hamburger — menu na mobile (desktop bez zmian) */
+(function(){var b=document.querySelector('.nav .menu-btn'),m=document.getElementById('gj-menu');if(!b||!m)return;
+b.addEventListener('click',function(){var o=m.classList.toggle('otwarte');b.setAttribute('aria-expanded',o?'true':'false');});
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('otwarte');b.setAttribute('aria-expanded','false');});});
+/* generator: nowe okno na kompie, to samo okno na telefonie (wg widocznosci hamburgera) */
+var gen=m.querySelector('a[href="../generator/"]');
+function ustawTarget(){if(!gen)return;if(getComputedStyle(b).display==='none'){gen.target='_blank';gen.rel='noopener';}else{gen.removeAttribute('target');gen.removeAttribute('rel');}}
+ustawTarget();window.addEventListener('resize',ustawTarget);
+})();
 
 </script>
 <div class="poswiata" aria-hidden="true"></div>
