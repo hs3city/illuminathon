@@ -345,7 +345,7 @@ function dwaPkt(){ const a=[...pointers.values()]; return [a[0],a[1]]; }
 function pinchStan(){ const [a,b]=dwaPkt(); return {d:Math.hypot(a.x-b.x,a.y-b.y), mx:(a.x+b.x)/2, my:(a.y+b.y)/2}; }
 
 canvas.addEventListener('pointerdown',e=>{
-  if(!stan.img){ plik.click(); return; }              // pusty stan → wybor zdjecia
+  if(!stan.img){ return; }              // pusty stan: wybor zdjecia obsluguje 'click' (dziala na mobile/iOS)
   canvas.setPointerCapture(e.pointerId);
   pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(pointers.size===1){ panPrev={x:e.clientX,y:e.clientY}; canvas.classList.add('drag'); }
@@ -378,6 +378,8 @@ function koniecPtr(e){
 }
 ['pointerup','pointercancel'].forEach(ev=>canvas.addEventListener(ev,koniecPtr));
 canvas.addEventListener('wheel',e=>{ if(!stan.img) return; e.preventDefault(); const p=canvasPt(e.clientX,e.clientY); zoomDo(stan.zoom*(e.deltaY<0?1.08:1/1.08), p.x, p.y); },{passive:false});
+// pusty stan kolka: tapniecie/klik otwiera wybor zdjecia (click dziala na mobile, pointerdown nie zawsze)
+canvas.addEventListener('click',()=>{ if(!stan.img) plik.click(); });
 
 document.getElementById('pobierz').addEventListener('click',()=>{
   rysuj();
