@@ -383,9 +383,18 @@ canvas.addEventListener('click',()=>{ if(!stan.img) plik.click(); });
 
 document.getElementById('pobierz').addEventListener('click',()=>{
   rysuj();
-  canvas.toBlob(blob=>{ const a=document.createElement('a'); const d=new Date().toISOString().slice(0,10).replace(/-/g,'');
-    a.href=URL.createObjectURL(blob); a.download=`${stan.w}-${d}.png`; document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(()=>URL.revokeObjectURL(a.href),2000); },'image/png');
+  canvas.toBlob(async blob=>{ const d=new Date().toISOString().slice(0,10).replace(/-/g,''); const nazwa=`${stan.w}-${d}.png`;
+    const file=new File([blob],nazwa,{type:'image/png'});
+    // na mobile: Web Share API -> iOS pokazuje „Zapisz obraz" prosto do Zdjec; tylko pliki (bez title/text)
+    const mobile=(navigator.maxTouchPoints>0 || 'ontouchstart' in window);
+    if(mobile && navigator.canShare && navigator.canShare({files:[file]})){
+      try{ await navigator.share({files:[file]}); return; }
+      catch(e){ if(e.name==='AbortError') return; /* inny blad -> fallback pobierania */ }
+    }
+    // fallback desktop/Android: klasyczne pobranie przez <a download>
+    const a=document.createElement('a'); const url=URL.createObjectURL(blob);
+    a.href=url; a.download=nazwa; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000); },'image/png');
 });
 
 init();
