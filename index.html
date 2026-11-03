@@ -62,7 +62,7 @@ main,header,footer{position:relative;z-index:2}
 .nav .shell{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
 .marka{display:flex;align-items:center;gap:12px;text-decoration:none}
 .marka .wm-img{height:22px;width:auto}
-.nav ul{display:flex;gap:28px;align-items:center}
+.nav #nav-menu{display:flex;gap:28px;align-items:center}.nav .dzial{position:relative}.nav .dzial-btn{appearance:none;background:none;border:0;cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--biel-2);padding:6px 0;display:flex;align-items:center;gap:7px}.nav .dzial-btn::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .15s}.nav .dzial-btn[aria-expanded="true"]::after{transform:translateY(1px) rotate(-135deg)}.nav .dzial-btn:hover,.nav .dzial-btn[aria-expanded="true"]{color:var(--limonka)}.nav .pod{display:none;position:absolute;top:calc(100% + 12px);left:-18px;min-width:200px;flex-direction:column;gap:0;padding:8px 0;background:rgba(18,22,58,.97);border:1px solid var(--linia);border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.4);list-style:none;margin:0}.nav .pod::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}.nav .pod.otwarte{display:flex}@media (min-width:1001px) and (hover:hover){.nav .dzial:hover .pod{display:flex}}.nav .pod a{display:block;padding:10px 18px;border-bottom:0}
 .nav ul a{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--biel-2);text-decoration:none;
   padding:6px 0;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
 .nav ul a:hover{color:var(--limonka);border-color:var(--limonka)}
@@ -75,7 +75,7 @@ main,header,footer{position:relative;z-index:2}
 .nav .menu-btn[aria-expanded="true"] .bar{background:transparent}
 .nav .menu-btn[aria-expanded="true"] .bar::before{top:0;transform:rotate(45deg)}
 .nav .menu-btn[aria-expanded="true"] .bar::after{top:0;transform:rotate(-45deg)}
-@media (max-width:1240px){
+@media (max-width:1000px){
   .nav .shell{height:58px}
   .nav .marka{margin-right:auto}
   .nav .menu-btn{display:flex}
@@ -85,7 +85,12 @@ main,header,footer{position:relative;z-index:2}
   .nav ul.otwarte{display:flex}
   .nav ul li{width:100%}
   .nav ul a{display:block;padding:15px 24px;font-size:13px;border-bottom:none}
-  .nav ul li+li a{border-top:1px solid var(--linia)}
+  .nav #nav-menu>li+li{border-top:1px solid var(--linia)}
+  .nav #nav-menu{display:none;gap:0;align-items:stretch}.nav #nav-menu.otwarte{display:flex}
+  .nav .dzial-btn{width:100%;justify-content:space-between;padding:15px 24px;font-size:13px}
+  .nav .pod{position:static;min-width:0;border:0;border-radius:0;box-shadow:none;background:rgba(255,255,255,.03);padding:0 0 6px}
+  .nav .pod::before{display:none}
+  .nav .pod a{padding:12px 24px 12px 40px;font-size:12.5px}
 }
 
 /* ───────── hero ───────── */
@@ -352,7 +357,7 @@ main,header,footer{position:relative;z-index:2}
 .galeria img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .3s}
 .galeria li:hover img{transform:scale(1.04)}
 .galeria li::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(18,22,58,.45));pointer-events:none}
-.galeria-podpis{margin-bottom:clamp(30px,4vh,44px)}
+.galeria-podpis{margin-bottom:clamp(30px,4vh,44px)}.galeria-podpis:has(+.galeria-otworz){margin-bottom:12px}.galeria-otworz{margin:0 0 clamp(30px,4vh,44px)}.galeria-otworz .btn{cursor:pointer;font-family:inherit}
 @media (max-width:640px){.galeria{grid-template-columns:repeat(2,1fr)}}
 
 /* 06b mentorzy */
@@ -387,14 +392,12 @@ main,header,footer{position:relative;z-index:2}
 /* 07 partnerzy */
 .loga.kafelki{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(12px,1.8vw,22px);list-style:none;margin:26px 0 0;padding:0}
 .loga.kafelki li{display:flex;margin:0}
-.kafelek{display:flex;align-items:center;justify-content:center;background:#fff;border-radius:14px;padding:14px 22px;height:92px;min-width:146px;box-sizing:border-box;transition:transform .15s,box-shadow .15s}
-.kafelek img{max-height:60px;max-width:170px;width:auto;height:auto;object-fit:contain;display:block}
+.kafelek{display:flex;align-items:center;justify-content:center;background:#fff;border-radius:14px;padding:14px 22px;height:92px;width:200px;box-sizing:border-box;transition:transform .15s,box-shadow .15s}
+.kafelek img{max-height:52px;max-width:150px;width:auto;height:auto;object-fit:contain;display:block}
 .loga.kafelki a.kafelek{opacity:1}
 .loga.kafelki a.kafelek:hover{opacity:1;filter:none;transform:none;box-shadow:none}
 .loga.kafelki:not(.duze){max-width:58rem;margin-inline:auto}
-.loga.kafelki.duze .kafelek{height:130px;min-width:196px;padding:18px 30px;border-radius:16px}
-.loga.kafelki.duze .kafelek img{max-height:92px;max-width:236px}
-@media (max-width:640px){.kafelek{height:62px;min-width:102px;padding:9px 14px}.kafelek img{max-height:40px;max-width:130px}.loga.kafelki.duze .kafelek{height:88px;width:160px;min-width:0;padding:12px 18px}.loga.kafelki.duze .kafelek img{max-height:56px;max-width:100%}}
+@media (max-width:640px){.kafelek{height:66px;width:140px;padding:9px 14px}.kafelek img{max-height:36px;max-width:108px}}
 .partnerzy{text-align:center}
 .partnerzy .sek-head{justify-content:center}
 .partnerzy .sek-head h2{margin-inline:auto}
@@ -439,7 +442,7 @@ footer .sygn{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-tr
 footer .sygn a{color:var(--biel-2);text-decoration:none;border-bottom:1px solid rgba(238,235,247,.22);padding-bottom:1px}
 footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
 .belka-ue{background:#fff;padding:20px 16px;display:flex;justify-content:center;position:relative;z-index:2147483001}
-.belka-ue img{width:100%;max-width:800px;height:auto;display:block}
+.belka-ue img{width:100%;max-width:1000px;height:auto;display:block}
 @media (max-width:640px){.belka-ue{padding:16px 12px}}
 
 /* wejście strony — jedno zestrojone pojawienie */
@@ -468,13 +471,20 @@ footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
       <img class="wm-img" src="assets/logo/illuminathon-color.webp" alt="" width="3233" height="555" aria-hidden="true">
     </a>
     <ul id="nav-menu">
-      <li><a href="#swiatlo">O wydarzeniu</a></li>
-      <li><a href="#program">Program</a></li>
-      <li><a href="#towarzyszace">Warsztaty</a></li>
+      <li class="dzial"><button type="button" class="dzial-btn" aria-expanded="false" aria-controls="dz-wydarzenie">Wydarzenie</button>
+        <ul class="pod" id="dz-wydarzenie">
+          <li><a href="#swiatlo">O wydarzeniu</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#towarzyszace">Warsztaty</a></li>
+        </ul></li>
+      <li class="dzial"><button type="button" class="dzial-btn" aria-expanded="false" aria-controls="dz-ludzie">Ludzie</button>
+        <ul class="pod" id="dz-ludzie">
+          <li><a href="#mentorzy">Mentorzy</a></li>
+          <li><a href="#jury">Jury</a></li>
+          <li><a href="#partnerzy">Partnerzy</a></li>
+        </ul></li>
+      <li><a href="#galeria-2026">Galeria</a></li>
       <li><a href="game-jam/">0h Game Jam</a></li>
-      <li><a href="#mentorzy">Mentorzy</a></li>
-      <li><a href="#jury">Jury</a></li>
-      <li><a href="#partnerzy">Partnerzy</a></li>
       <li><a href="generator/">Generator grafik</a></li>
     </ul>
     <a target="_blank" class="btn btn-swiatlo" href="https://evenea.pl/wydarzenie/illuminathon-2026-swiatlo-na-gdynie-5pzqielo" rel="noopener">Zapisz się</a>
@@ -661,37 +671,40 @@ footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
     <div class="sek-head">
       <h2 id="h-galeria-2026">Galeria <span class="akc">2026</span></h2>
     </div>
-    <p class="galeria-wstep">Zdjęcia z Illuminathonu 2026 i 0h Game Jamu w trolejbusie. Śmiało je udostępniajcie: podpiszcie autora zdjęcia, oznaczcie organizatorów i partnerów, dodajcie <b>#Illuminathon #0hGameJam</b>. Wszystkie zdjęcia, podzielone na autorów, są w <a href="https://drive.google.com/drive/folders/1dn22bzRTW5eJ2Q_-y3DrAIzZYxc2jGjV" target="_blank" rel="noopener">folderze na Google Drive</a>.</p>
+    <p class="galeria-wstep">Zdjęcia z Illuminathonu 2026 i 0h Game Jamu w trolejbusie. Śmiało je udostępniajcie: podpiszcie autora zdjęcia, oznaczcie organizatorów i partnerów, dodajcie <b>#Illuminathon #0hGameJam</b>.</p>
     <h3 class="galeria-autor">Illuminathon 2026</h3>
-    <ul class="galeria" aria-label="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka">
-      <li><img src="assets/foto/2026/ilu-mw5-39-800.webp" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/ilu-mw5-60-800.webp" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/ilu-mw5-56-800.webp" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/ilu-mw5-84-800.webp" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/ilu-mw5-153-800.webp" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/ilu-mw5-162p-800.webp" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
+    <ul class="galeria" data-galeria="mw" aria-label="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka">
+      <li><img src="assets/foto/2026/ilu-mw5-39-800.webp" data-nr="39" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/ilu-mw5-60-800.webp" data-nr="60" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/ilu-mw5-56-800.webp" data-nr="56" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/ilu-mw5-84-800.webp" data-nr="84" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/ilu-mw5-153-800.webp" data-nr="153" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/ilu-mw5-162p-800.webp" data-nr="162" alt="Zdjęcia z Illuminathonu 2026, fot. Marta Wysocka" loading="lazy" width="800" height="533"></li>
     </ul>
-    <p class="lbl galeria-podpis">fot. Marta Wysocka · <a href="https://drive.google.com/drive/folders/1BRSA6s_rwDc1Eue0hYoEtzS5gkHT-V9u" target="_blank" rel="noopener">cała galeria na Google Drive →</a></p>
+    <p class="lbl galeria-podpis">fot. Marta Wysocka</p>
+    <p class="galeria-otworz"><button type="button" class="btn btn-cien" data-galeria-otworz="mw">Otwórz galerię · <span class="ile"></span> →</button></p>
     <h3 class="galeria-autor">0h Game Jam w trolejbusie</h3>
-    <ul class="galeria" aria-label="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz">
-      <li><img src="assets/foto/2026/gj-og-7601-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-og-7620-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-og-7690-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-og-7730-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-og-7694-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-og-7627-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
+    <ul class="galeria" data-galeria="og" aria-label="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz">
+      <li><img src="assets/foto/2026/gj-og-7601-800.webp" data-nr="7601" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-og-7620-800.webp" data-nr="7620" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-og-7690-800.webp" data-nr="7690" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-og-7730-800.webp" data-nr="7730" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-og-7694-800.webp" data-nr="7694" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-og-7627-800.webp" data-nr="7627" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Olimpia Goździewicz" loading="lazy" width="800" height="533"></li>
     </ul>
-    <p class="lbl galeria-podpis">fot. Olimpia Goździewicz, paradizart.pl · <a href="https://drive.google.com/drive/folders/1jZ_0Sr5wYUMTlGRrRTGpG_3E7QGZVMDM" target="_blank" rel="noopener">cała galeria na Google Drive →</a></p>
+    <p class="lbl galeria-podpis">fot. Olimpia Goździewicz, paradizart.pl</p>
+    <p class="galeria-otworz"><button type="button" class="btn btn-cien" data-galeria-otworz="og">Otwórz galerię · <span class="ile"></span> →</button></p>
     <h3 class="galeria-autor">0h Game Jam w trolejbusie</h3>
-    <ul class="galeria" aria-label="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz">
-      <li><img src="assets/foto/2026/gj-lb-1199810-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-lb-1199924-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-lb-1199977-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-lb-1200031-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-lb-1200258-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
-      <li><img src="assets/foto/2026/gj-lb-1200337-800.webp" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
+    <ul class="galeria" data-galeria="lb" aria-label="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz">
+      <li><img src="assets/foto/2026/gj-lb-1199810-800.webp" data-nr="1199810" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-lb-1199924-800.webp" data-nr="1199924" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-lb-1199977-800.webp" data-nr="1199977" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-lb-1200031-800.webp" data-nr="1200031" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-lb-1200258-800.webp" data-nr="1200258" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
+      <li><img src="assets/foto/2026/gj-lb-1200337-800.webp" data-nr="1200337" alt="Zdjęcia z 0h Game Jamu w trolejbusie, fot. Lech Bakalarz" loading="lazy" width="800" height="533"></li>
     </ul>
-    <p class="lbl galeria-podpis">fot. Lech Bakalarz, BakArt Photo · <a href="https://drive.google.com/drive/folders/10cIl4zs_dwLya0ER08FpTw9CLqZpk5y_" target="_blank" rel="noopener">cała galeria na Google Drive →</a></p>
+    <p class="lbl galeria-podpis">fot. Lech Bakalarz, BakArt Photo</p>
+    <p class="galeria-otworz"><button type="button" class="btn btn-cien" data-galeria-otworz="lb">Otwórz galerię · <span class="ile"></span> →</button></p>
   </div>
 </section>
 
@@ -1319,11 +1332,14 @@ footer .sygn a:hover{color:var(--limonka);border-color:var(--limonka)}
 </script>
 <script src="shared/poswiata.js?v=1011b" defer></script>
 <script src="shared/lightbox.js" defer></script>
+<script src="shared/galerie-dane.js" defer></script>
+<script src="shared/galerie.js" defer></script>
 <script>
 /* hamburger — menu na mobile (desktop bez zmian) */
 (function(){var b=document.querySelector('.nav .menu-btn'),m=document.getElementById('nav-menu');if(!b||!m)return;
 b.addEventListener('click',function(){var o=m.classList.toggle('otwarte');b.setAttribute('aria-expanded',o?'true':'false');});
 m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('otwarte');b.setAttribute('aria-expanded','false');});});
+var dz=m.querySelectorAll('.dzial-btn');function zamknijDz(w){dz.forEach(function(x){if(x!==w){x.setAttribute('aria-expanded','false');document.getElementById(x.getAttribute('aria-controls')).classList.remove('otwarte');}});}dz.forEach(function(x){x.addEventListener('click',function(e){e.stopPropagation();var p=document.getElementById(x.getAttribute('aria-controls'));var o=p.classList.toggle('otwarte');x.setAttribute('aria-expanded',o?'true':'false');zamknijDz(x);});});document.addEventListener('click',function(e){if(!e.target.closest('.dzial'))zamknijDz(null);});document.addEventListener('keydown',function(e){if(e.key==='Escape')zamknijDz(null);});window.addEventListener('scroll',function(){if(getComputedStyle(b).display==='none')zamknijDz(null);},{passive:true});m.querySelectorAll('.pod a').forEach(function(a){a.addEventListener('click',function(){zamknijDz(null);});});
 /* generator: nowe okno na kompie, to samo okno na telefonie (wg widocznosci hamburgera) */
 var gen=m.querySelector('a[href="generator/"]');
 function ustawTarget(){if(!gen)return;if(getComputedStyle(b).display==='none'){gen.target='_blank';gen.rel='noopener';}else{gen.removeAttribute('target');gen.removeAttribute('rel');}}
